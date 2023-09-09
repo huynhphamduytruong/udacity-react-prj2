@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { GetUsers } from 'utils/apis/appApi'
 import { User } from 'types'
 import { saveAnswer } from 'features/Poll/pollSlice'

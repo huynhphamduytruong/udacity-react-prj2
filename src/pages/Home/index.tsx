@@ -30,6 +30,7 @@ export const HomePage = () => {
   useEffect(() => {
     void dispatch(getPolls())
     void dispatch(getUsers())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleVoting = async (qid, option) => {

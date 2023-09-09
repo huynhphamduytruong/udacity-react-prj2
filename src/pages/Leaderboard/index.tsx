@@ -13,6 +13,7 @@ export const Leaderboard = () => {
 
   useEffect(() => {
     void dispatch(getUsers())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Sum both the number of questions and answers and use the sum to compare with other

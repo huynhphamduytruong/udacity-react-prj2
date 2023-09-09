@@ -4,11 +4,10 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    "react-app",
-    "react-app/jest",
+    'react-app',
+    'react-app/jest',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react-hooks/recommended'
   ],
   parser: '@typescript-eslint/parser',

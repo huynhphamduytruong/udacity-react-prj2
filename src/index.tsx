@@ -4,12 +4,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
-import { createHashRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AppRoutes } from './app/routes'
 import store from './app/store'
 import { GlobalStyle } from './index.styled'
 
-const router = createHashRouter(AppRoutes)
+const router = createBrowserRouter(AppRoutes)
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

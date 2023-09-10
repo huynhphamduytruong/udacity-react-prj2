@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom/extend-expect'
-import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { screen, fireEvent } from '@testing-library/react'
 import { AddQuestion } from 'pages/AddQuestion'
 import Layout from 'pages/Shared/Layout'
+import { act } from 'react-dom/test-utils'
 import { renderWithProvider } from 'test-utils/render'
 
 describe('AddQuestion page', () => {
@@ -29,16 +29,18 @@ describe('AddQuestion page', () => {
       { preloadedState }
     )
 
-    const user = userEvent.setup()
-
     const inputOne = screen.getByTestId('option1')
     const inputTwo = screen.getByTestId('option2')
     const submitButton = screen.getByTestId('submit-btn')
 
     expect(submitButton).toHaveAttribute('disabled')
 
-    await user.type(inputOne, 'first value')
-    await user.type(inputTwo, 'second value')
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    await act(async () => {
+      await fireEvent.change(inputOne, { target: { value: 'first value' } })
+
+      await fireEvent.change(inputTwo, { target: { value: 'second value' } })
+    })
 
     expect(submitButton).not.toHaveAttribute('disabled')
   })

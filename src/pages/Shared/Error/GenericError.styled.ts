@@ -30,7 +30,7 @@ export const GenericErrorSubtitle = styled.h2`
 export const GenericErrorTitleContainer = styled.div``
 
 export const GenericErrorContainer = styled.div.attrs(({ className }) => ({
-  className: 'vh-100 justify-contents-center d-flex flex-column justify-content-center align-items-center ' + className ?? ''
+  className: 'justify-contents-center d-flex flex-column justify-content-center align-items-center ' + (className ?? '')
 }))`
   * {
     text-align: center;

@@ -87,7 +87,7 @@ export const QuestionCard = ({ question, questioner, selectedOption, enabled, on
           ) : (
             <Row>
               <Col>
-                <Link to={`/polls/${question.id}`}>
+                <Link to={`/questions/${question.id}`}>
                   <Button className="w-100">View detail</Button>
                 </Link>
               </Col>

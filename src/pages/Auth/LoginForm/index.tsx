@@ -1,11 +1,11 @@
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { authSelector } from 'features/Auth/authSlice'
 import { Alert, FloatingLabel, Button, Card, Form, Spinner } from 'react-bootstrap'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import ReactSelect from 'react-select'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { loginAsync } from 'features/Auth/authSlice'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { User } from 'types'
 import { getUsers, usersSelector } from 'features/User/userSlice'
 
@@ -19,6 +19,9 @@ export const LoginForm = () => {
   const usersStore = useAppSelector(usersSelector)
   const auth = useAppSelector(authSelector)
   const dispatch = useAppDispatch()
+
+  const location = useLocation()
+  const redirectUrl = useMemo(() => location.state?.redirectUrl ?? '/', [location.state])
 
   const { loading, users: impersonateUsers } = usersStore
 
@@ -56,7 +59,7 @@ export const LoginForm = () => {
     }
   }
 
-  if (auth.isAuthenticated) return <Navigate to="/" replace />
+  if (auth.isAuthenticated) return <Navigate to={redirectUrl} replace />
 
   return (
     <>

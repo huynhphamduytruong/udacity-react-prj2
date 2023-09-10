@@ -1,4 +1,3 @@
-import { GlobalApiInitialState } from './../globalApi'
 import { RootState } from 'app/store'
 import authReducer, { AuthInitialState, authSelector, login, logout } from './../Auth/authSlice'
 

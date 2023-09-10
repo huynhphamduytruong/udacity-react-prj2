@@ -3,10 +3,10 @@
 exports[`AddQuestion page should match snapshot 1`] = `
 <div>
   <div
-    class="sc-bcPKhP cRFdXx vh-100 d-flex flex-column"
+    class="sc-eDnVMP jeJwIl vh-100 d-flex flex-column"
   >
     <header
-      class="sc-grXZZQ lcmHQc fixed-top bg-body-tertiary mb-2"
+      class="sc-jSwlEQ iBdDrm fixed-top bg-body-tertiary mb-2"
     >
       <nav
         class="navbar navbar-expand-md navbar-light"

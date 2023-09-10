@@ -1,4 +1,4 @@
-import { Link, Navigate, RouteObject, redirect } from 'react-router-dom'
+import { Link, Navigate, RouteObject } from 'react-router-dom'
 import { ProtectedRoot } from './ProtectedRoot'
 import { HomePage } from 'pages/Home'
 import { LoginForm } from 'pages/Auth/LoginForm'
@@ -9,6 +9,7 @@ import { QuestionDetails } from 'components/QuestionDetails'
 
 import store from 'app/store'
 import { GenericErrorPage } from 'pages/Shared/Error/GenericError'
+import { getPolls } from 'features/Poll/pollSlice'
 
 export const AppRoutes: RouteObject[] = [
   {
@@ -45,14 +46,11 @@ export const AppRoutes: RouteObject[] = [
         index: true
       },
       {
-        path: 'polls/:pollId',
+        path: 'questions/:pollId',
         loader: async ({ params }) => {
-          const { polls: pollsStore, auth } = store.getState()
-          if (!auth.isAuthenticated) return redirect('/auth')
-          const question = pollsStore.polls.find((p) => p.id === params.pollId)
-          if (!question) throw new Response('Question not found', { status: 404, statusText: 'Question not found' })
-
-          return question
+          await store.dispatch(getPolls())
+          const { polls: pollsStore } = store.getState()
+          return pollsStore.polls.find((p) => p.id === params.pollId) ?? null
         },
         element: <QuestionDetails />
       },

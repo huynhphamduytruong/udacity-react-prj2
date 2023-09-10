@@ -6,18 +6,23 @@ import {
   GenericErrorTitle
 } from './GenericError.styled'
 
-export const GenericErrorPage = () => {
+interface IProps {
+  error?: unknown
+}
+export const GenericErrorPage = ({ error: customError }: IProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-  const error = useRouteError() as any
+  let error = useRouteError() as any
+
+  if (customError) error = customError
 
   return (
-    <GenericErrorContainer>
+    <GenericErrorContainer className={customError ? '' : 'vh-100'}>
       <GenericErrorTitleContainer>
         <GenericErrorTitle>Oops!</GenericErrorTitle>
       </GenericErrorTitleContainer>
       <GenericErrorSubtitle>Sorry, an unexpected error has occured.</GenericErrorSubtitle>
       {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-      <p>{error.statusText || error.message}</p>
+      <p>{error?.statusText || error?.message}</p>
       <Link to="/">Return to Homepage</Link>
     </GenericErrorContainer>
   )
